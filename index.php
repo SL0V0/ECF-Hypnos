@@ -10,15 +10,7 @@
     <title>HYPNOS</title>
 </head>
 <body>
-    <header>
-        <a href="index.php"><img class="imgLogo" src="images/logo.png" alt="logo"></a>
-        <nav>
-            <span class="spanNav"><h2 class="h2Nav"><a class="aNav" href="#">Réserver</a></h2></span>
-            <span class="spanNav"><h2 class="h2Nav"><a class="aNav" href="#">Nous contacter</a></h2></span>
-            <span class="spanNav"><h2 class="h2Nav"><a class="aNav" href="#">S'inscrire</a></h2></span>
-            <span class="spanNav"><h2 class="h2Nav"><a class="aNav" href="#">Se connecter</a></h2></span>
-        </nav>
-    </header>
+    <?php include("include/header.php"); ?>
     <main>
         <article class="articleMain">
             <section class="sectionH1">
@@ -35,8 +27,6 @@
             </section>
         </article>
     </main>
-    <footer>
-        <p class="pFooter">2004 - 2022 Hypnos.com. Tous droits réservés.</p>
-    </footer>
+    <?php include("include/footer.php"); ?>
 </body>
 </html>
