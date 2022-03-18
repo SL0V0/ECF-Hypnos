@@ -1,0 +1,12 @@
+footer
+{
+    display: flex;
+    align-items: center;
+    background-color: #e0ae51;
+}
+.pFooter
+{
+    font-family: 'JosefinSans';
+    margin-left: 10px;
+    color: #2c2c2c;
+}

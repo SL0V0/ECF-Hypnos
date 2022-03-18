@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "JosefinSans";
+    src: url("fonts/JosefinSans.ttf");
+}
+body
+{
+    font-family: "JosefinSans";
+}
+header
+{
+    display: flex;
+    align-items: center;
+    background-color: #e0ae51;
+}
+.imgLogo
+{
+    margin-left: 20px;
+    height: 100px;
+}
+nav
+{
+    display: flex;
+    margin-left: auto;
+}
+.spanNav
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.h2Nav
+{
+    color: #2c2c2c;
+}
+.aNav
+{
+    text-decoration: none;
+    color: #2c2c2c;
+}
+
+
+
