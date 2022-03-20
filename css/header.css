@@ -23,7 +23,7 @@ header
 {
     display: flex;
     align-items: center;
-    background-color: #e0ae51;
+    background-color: #fff;
     grid-area: 1 / 1 / 2 / 2;
 }
 .imgLogo
@@ -43,12 +43,12 @@ nav
 }
 .h2Nav
 {
-    color: #2c2c2c;
+    color: #bd9e56;
 }
 .aNav
 {
     text-decoration: none;
-    color: #2c2c2c;
+    color: #bd9e56;
 }
 
 

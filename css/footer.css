@@ -2,12 +2,13 @@ footer
 {
     display: flex;
     align-items: center;
-    background-color: #e0ae51;
+    background-color: #fff;
     grid-area: 3 / 1 / 4 / 2; 
 }
 .pFooter
 {
     font-family: 'JosefinSans';
     margin-left: 10px;
-    color: #2c2c2c;
+    font-weight: bolder;
+    color: #bd9e56;
 }
