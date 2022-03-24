@@ -16,7 +16,7 @@
             <h1>Inscription</h1>
             <div class="divLabInp">
                 <label for="nom">Nom</label>
-                <input type="text" name="nom" id="nom" required>
+                <input type="text" name="nom" id="nom" >
                 <label for="prenom">Prénom</label>
                 <input type="text" name="prenom" id="prenom" required>
                 <label for="email">E-mail</label>
@@ -27,11 +27,14 @@
                 <input type="password" name="confmdp" id="confmdp" required>
             </div>
             <div class="divBtnLink">
-                <input type="submit" value="INSCRIPTION">
+                <input id="btnSubmit" type="submit" value="INSCRIPTION">
                 <a href="connexion.php">Se connecter ?</a>
             </div>
         </form>
     </main>
     <?php include("include/footer.php"); ?>
+    <script src="js/inscription.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+
 </body>
 </html>

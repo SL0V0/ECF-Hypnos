@@ -9,9 +9,10 @@ main
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #e0ae51;
+    background-color: #fff;
     border-radius: 10px;
     width: 600px;
+    border: 3px solid #bd9e56;
 }
 .h1Main
 {
@@ -20,8 +21,16 @@ main
     text-align: center;
     padding-top: 25px;
     padding-bottom: 25px;
-    border-bottom: 1px solid #2c2c2c;
+    border-bottom: 1px solid #bd9e56;
     font-size: xx-large;
+}
+.h1Succes
+{
+    background-color: #fff;
+    padding: 20px;
+    color: #bd9e56;
+    border: 2px solid #bd9e56;
+    border-radius: 10px;
 }
 .parentDivLabInp
 {
@@ -30,7 +39,7 @@ main
 .divLabInp
 {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .label
 {
@@ -39,10 +48,10 @@ main
 }
 .input
 {
-    background-color: #2c2c2c;
-    color: #e0ae51;
+    background-color: #fff;
+    color: #2c2c2c;
     border-radius: 10px;
-    border-color: #e0ae51;
+    border: 2px solid #bd9e56;
     width: 100%;
     height: 30px;
     font-family: 'JosefinSans';
@@ -56,19 +65,19 @@ main
 }
 .btn
 {
+    font-family: "JosefinSans";
     width: 200px;
     height: 50px;
     border-radius: 10px;
-    border: 2px solid #e0ae51;
-    font-size: large;
+    border: 2px solid #bd9e56;
     transition: 0.3s;
     background-color: #2c2c2c;
-    color: #e0ae51;
+    color: #bd9e56;
 }
 .btn:hover
 {
     border-color: #2c2c2c;
-    background-color: #e0ae51;
+    background-color: #bd9e56;
     color: #2c2c2c;
 }
 .divLienExterne
@@ -82,12 +91,12 @@ main
 }
 .lienInscription
 {
-    color: #2c2c2c;
+    color: #bd9e56;
     width: 100%;
     text-align: center;
 }
 .aLink
 {
-    color: #2c2c2c;
+    color: #bd9e56;
     text-decoration: none;
 }

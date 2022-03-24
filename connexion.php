@@ -1,36 +1,49 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/connexion.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <title>Connexion</title>
-</head>
-<body>
-    <?php include("include/header.php"); ?>
-    <main>
-        <form class="formMain" action="" method="post">
-            <h1 class="h1Main">Connexion</h1>
-            <div class="parentDivLabInp">
-                <div class="divLabInp">
-                    <label class="label" for="email">E-mail</label><br>
-                    <input class="input" type="text" name="email" id="mdp">
-                </div>
-                <div class="divLabInp">
-                    <label class="label" for="mdp">Mot de passe</label><br>
-                    <input class="input" type="text" name="mdp" id="mdp">
-                </div>
-            </div>
-            <div class="divBtn"><input class="btn" type="submit" value="CONNEXION"></div>
-            <div class="divLienExterne">
-                <p class="lienMdpForgot"><a class="aLink" href="#">Mot de passe oublié ?</a></p>
-                <p class="lienInscription">Pas encore membre ? <a class="aLink" href="#">S'inscrire</a></p>
-            </div>
-        </form>
-    </main>
-    <?php include("include/footer.php"); ?>
-</body>
-</html>
+<?php
+    try
+    {
+        $bdd = new PDO('mysql:host=localhost;dbname=hypnos', 'root', 'root');
+    }
+    catch(Exception $e)
+    {
+        die('Erreur : '.$e->getMessage());
+    }
+
+    session_start();
+
+    if(!empty($_SESSION['token']))
+    {
+        header('Location: compte.php');
+
+    }else if(!empty($_POST['email']) && !empty($_POST['mdp'])) {
+        
+        $email = htmlspecialchars($_POST['email']);
+        $mdp = htmlspecialchars($_POST['mdp']);
+
+        $requette = $bdd->prepare('SELECT * FROM user WHERE email = ?');
+        $requette->execute(array($email));
+        $donnees = $requette->fetch();
+
+        if(!$donnees) {
+
+            include("include/error_connexion.php");
+            include("include/main.connexion.php");
+
+        }else if(!password_verify($mdp, $donnees['mot_de_passe'])) {
+
+            include("include/error_connexion.php");
+            include("include/main.connexion.php");
+
+        }else {
+
+            session_start();
+            $_SESSION['token'] = $donnees['token'];
+            include("include/succes_connexion.php");
+            header('Refresh: 3; compte.php');
+        }
+
+    }else {
+
+        include("include/main.connexion.php");
+    }
+
+    ?>
