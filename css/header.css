@@ -41,14 +41,14 @@ nav
     margin-left: 20px;
     margin-right: 20px;
 }
-.h2Nav
-{
-    color: #bd9e56;
-}
 .aNav
 {
     text-decoration: none;
     color: #bd9e56;
+}
+.aNav:hover
+{
+    color: #2c2c2c;
 }
 
 

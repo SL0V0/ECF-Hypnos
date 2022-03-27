@@ -6,6 +6,9 @@ main
 }
 .articleMain
 {
+    background-color: #fff;
+    border: 3px solid #bd9e56;
+    border-radius: 10px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 100px 1fr;
@@ -23,7 +26,7 @@ main
 }
 h1
 {
-    color: #e0ae51;
+    color: #bd9e56;
     font-size: -webkit-xxx-large;
 }
 .sectionArticleMain
@@ -47,9 +50,9 @@ h1
     padding: 35px 0;
     border-radius: 10px;
     font-size: x-large;
-    border: 2px solid #2c2c2c;
+    border: 3px solid #2c2c2c;
     color: #2c2c2c;
-    background-color: #e0ae51;
+    background-color: #bd9e56;
     font-family: "JosefinSans";
     transition: 0.3s;
 }
