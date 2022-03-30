@@ -1,0 +1,120 @@
+main > h1
+{
+    color: #2c2c2c;
+    background-color: #fff;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    border-top: 3px solid #bd9e56;
+    border-bottom: 3px solid #bd9e56;
+}
+main > h2
+{
+    color: #fff;
+    text-align: center;
+    font-size: xxx-large;
+}
+.divParentEtablissement
+{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
+.divGerantParent
+{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
+#btnAjoutEtablissement
+{
+    color: #2c2c2c;
+}
+#btnAjoutGerant
+{
+    color: #2c2c2c;
+}
+.divEnfantEtablissement
+{
+    margin-top: 20px;
+    background-color: #fff;
+    width: 300px;
+    border: 2px solid #bd9e56;
+    border-radius: 10px;
+}
+.divEnfantGerant
+{
+    margin-top: 20px;
+    background-color: #fff;
+    width: 300px;
+    border: 2px solid #bd9e56;
+    border-radius: 10px;
+}
+.ajoutEtablissement
+{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    border: 2px solid #bd9e56;
+    border-radius: 10px;
+}
+.ajoutGerant
+{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    border: 2px solid #bd9e56;
+    border-radius: 10px;
+}
+.divEnfantEtablissement > h3
+{
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 2px solid #bd9e56;
+}
+.divModifSuppr
+{
+    display: flex;
+    border-top: 2px solid #bd9e56;
+}
+.pModifier
+{
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-right: 0.5px solid #bd9e56;
+    color: blue;
+}
+.pSuppr
+{
+    margin: 0;
+    width: 50%;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-left: 0.5px solid #bd9e56;
+    color: red;
+}
+.pType
+{
+    margin: 0;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+.pTypeValeur
+{
+    margin: 0;
+    padding-left: 10px;
+}
