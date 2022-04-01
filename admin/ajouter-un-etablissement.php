@@ -50,11 +50,12 @@ if(empty($_SESSION['token']))
             <div class="divError">Desciption incorrect</div>
 
             <div>
-                <input id="btnSubmit" type="submit" value="confirmer">
+                <input id="btnSubmit" type="submit" value="CONFIRMER">
             </div>
         </form>
     </main>
     <?php include("include/footer.php"); ?>
+    <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/etablissement.js"></script>
 </body>
 </html>

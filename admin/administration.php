@@ -11,10 +11,13 @@ catch(Exception $e)
 
 session_start();
 
+
+
 if(empty($_SESSION['token']))
 {
     header('Location: connexion.php');
-}else
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,196 +42,58 @@ if(empty($_SESSION['token']))
                 </svg>
                 </a>
             </div>
-            <div class="divEnfantEtablissement">
-                <h3>Marseille</h3>
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <p class="pType">Adresse</p>
-                <p class="pTypeValeur">123 rue de l'adresse</p>
-
-                <p class="pType">Description</p>
-                <p class="pTypeValeur">etablissement tres sympatique pouvant acceuiller de nombreux visiteur il est vraiment génial</p>
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantEtablissement">
-                <h3>Marseille</h3>
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <p class="pType">Adresse</p>
-                <p class="pTypeValeur">123 rue de l'adresse</p>
-
-                <p class="pType">Description</p>
-                <p class="pTypeValeur">etablissement tres sympatique pouvant acceuiller de nombreux visiteur il est vraiment génial</p>
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantEtablissement">
-                <h3>Marseille</h3>
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <p class="pType">Adresse</p>
-                <p class="pTypeValeur">123 rue de l'adresse</p>
-
-                <p class="pType">Description</p>
-                <p class="pTypeValeur">etablissement tres sympatique pouvant acceuiller de nombreux visiteur il est vraiment génial</p>
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantEtablissement">
-                <h3>Marseille</h3>
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <p class="pType">Adresse</p>
-                <p class="pTypeValeur">123 rue de l'adresse</p>
-
-                <p class="pType">Description</p>
-                <p class="pTypeValeur">etablissement tres sympatique pouvant acceuiller de nombreux visiteur il est vraiment génial</p>
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantEtablissement">
-                <h3>Marseille</h3>
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <p class="pType">Adresse</p>
-                <p class="pTypeValeur">123 rue de l'adresse</p>
-
-                <p class="pType">Description</p>
-                <p class="pTypeValeur">etablissement tres sympatique pouvant acceuiller de nombreux visiteur il est vraiment génial</p>
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
+            <?php
+                $requette = $bdd->query('SELECT * FROM etablissements');
+                while($donnees = $requette->fetch())
+                {
+                    echo "<div class='divEnfantEtablissement'>";
+                    echo "<h3>". $donnees['nom'] ."</h3>";
+                    echo "<p class='pType'>Ville</p>";
+                    echo "<p class='pTypeValeur'>". $donnees['ville'] ."</p>";
+                    echo "<p class='pType'>Adresse</p>";
+                    echo "<p class='pTypeValeur'>". $donnees['adresse'] ."</p>";
+                    echo "<p class='pType'>Description</p>";
+                    echo "<p class='pTypeValeur'>". $donnees['description'] ."</p>";
+                    echo "<div class='divModifSuppr'>";
+                    echo "<p class='pModifier'>Modifier</p>";
+                    echo "<p class='pSuppr'>Supprimer</p>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                $requette->closeCursor();
+            ?>
+            
         </div>
         <h2>Gérants</h2>
         <div class="divGerantParent">
             <div class="ajoutGerant">
-                    <a id="btnAjoutGerant" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <a id="btnAjoutGerant" href="ajouter-un-gerant.php"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>
                     </a>
             </div>
-            <div class="divEnfantGerant">
-                <p class="pType">Nom</p>
-                <p class="pTypeValeur">Baigneux</p>
+            <?php
+                $requette = $bdd->query('SELECT * FROM user WHERE role = "GERANT"');
+                while($donnees = $requette->fetch())
+                {
+                    echo "<div class='divEnfantGerant'>";
+                    echo "<p class='pType'>Nom</p>";
+                    echo "<p class='pTypeValeur'>". $donnees['nom'] ."</p>";
+                    echo "<p class='pType'>Prénom</p>";
+                    echo "<p class='pTypeValeur'>". $donnees['prenom'] ."</p>";
+                    echo "<p class='pType'>E-mail</p>";
+                    echo "<p class='pTypeValeur'>". $donnees['email'] ."</p>";
+                    echo "<p class='pType'>Ville</p>";
+                    echo "<p class='pTypeValeur'>". $donnees['ville'] ."</p>";
+                    echo "<div class='divModifSuppr'>";
+                    echo "<p class='pModifier'>Modifier</p>";
+                    echo "<p class='pSuppr'>Supprimer</p>";
+                    echo "</div>";
+                    echo "</div>";
+                } 
 
-                <p class="pType">Prénom</p>
-                <p class="pTypeValeur">gerard</p>
-
-                <p class="pType">E-mail</p>
-                <p class="pTypeValeur">emailgerant@gmail.com</p>
-
-                <p class="pType">Mot de passe</p>
-                <p class="pTypeValeur">dsgrgrfdgreeqgfd</p>
-
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantGerant">
-                <p class="pType">Nom</p>
-                <p class="pTypeValeur">Baigneux</p>
-
-                <p class="pType">Prénom</p>
-                <p class="pTypeValeur">gerard</p>
-
-                <p class="pType">E-mail</p>
-                <p class="pTypeValeur">emailgerant@gmail.com</p>
-
-                <p class="pType">Mot de passe</p>
-                <p class="pTypeValeur">dsgrgrfdgreeqgfd</p>
-
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantGerant">
-                <p class="pType">Nom</p>
-                <p class="pTypeValeur">Baigneux</p>
-
-                <p class="pType">Prénom</p>
-                <p class="pTypeValeur">gerard</p>
-
-                <p class="pType">E-mail</p>
-                <p class="pTypeValeur">emailgerant@gmail.com</p>
-
-                <p class="pType">Mot de passe</p>
-                <p class="pTypeValeur">dsgrgrfdgreeqgfd</p>
-
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantGerant">
-                <p class="pType">Nom</p>
-                <p class="pTypeValeur">Baigneux</p>
-
-                <p class="pType">Prénom</p>
-                <p class="pTypeValeur">gerard</p>
-
-                <p class="pType">E-mail</p>
-                <p class="pTypeValeur">emailgerant@gmail.com</p>
-
-                <p class="pType">Mot de passe</p>
-                <p class="pTypeValeur">dsgrgrfdgreeqgfd</p>
-
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            <div class="divEnfantGerant">
-                <p class="pType">Nom</p>
-                <p class="pTypeValeur">Baigneux</p>
-
-                <p class="pType">Prénom</p>
-                <p class="pTypeValeur">gerard</p>
-
-                <p class="pType">E-mail</p>
-                <p class="pTypeValeur">emailgerant@gmail.com</p>
-
-                <p class="pType">Mot de passe</p>
-                <p class="pTypeValeur">dsgrgrfdgreeqgfd</p>
-
-                <p class="pType">Ville</p>
-                <p class="pTypeValeur">Marseille</p>
-
-                <div class="divModifSuppr">
-                    <p class="pModifier">Modifier</p>
-                    <p class="pSuppr">Supprimer</p>
-                </div>
-            </div>
-            
+                $requette->closeCursor();
+            ?>
         </div>
     </main>
     <?php include("include/footer.php"); ?>

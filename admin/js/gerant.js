@@ -7,18 +7,24 @@ btnSubmit.addEventListener('click', function(event)
     let main = document.querySelector('main')
 
     let nom = document.getElementById('nom')
+    let prenom = document.getElementById('prenom')
+    let email = document.getElementById('email')
     let ville = document.getElementById('ville')
-    let adresse = document.getElementById('adresse')
-    let description = document.getElementById('description')
+    let mdp = document.getElementById('password')
+    let confPass = document.getElementById('confPass')
+
+    console.log(ville.value)
 
     let divError = document.querySelectorAll('.divError')
 
-    let etablissement = {
+    let gerant = {
 
         nom: nom.value,
+        prenom: prenom.value,
+        email: email.value,
         ville: ville.value,
-        adresse: adresse.value,
-        description: description.value
+        mdp: mdp.value,
+        confPass: confPass.value
     }
 
     if(nom.value.length == 0)
@@ -32,45 +38,12 @@ btnSubmit.addEventListener('click', function(event)
         nom.style.borderColor = "#bd9e56"
     }
 
-    if(ville.value.length == 0)
-    {
-        divError[1].style.visibility = "visible"
-        ville.style.borderColor = "red"
-    }
-    else
-    {
-        divError[1].style.visibility = "hidden"
-        ville.style.borderColor = "#bd9e56"
-    }
-
-    if(adresse.value.length == 0)
-    {
-        divError[2].style.visibility = "visible"
-        adresse.style.borderColor = "red"
-    }
-    else
-    {
-        divError[2].style.visibility = "hidden"
-        adresse.style.borderColor = "#bd9e56"
-    }
-
-    if(description.value.length == 0)
-    {
-        divError[3].style.visibility = "visible"
-        description.style.borderColor = "red"
-    }
-    else
-    {
-        divError[3].style.visibility = "hidden"
-        description.style.borderColor = "#bd9e56"
-    }
-
-    if(nom.value.length !== 0 && ville.value.length !== 0 && adresse.value.length !== 0 && description.value.length !== 0)
+    if(nom.value.length !== 0 && prenom.value.length !== 0 && email.value.length !== 0 && ville.value.length !== 0 && mdp.value.length !== 0 && confPass.value.length !== 0)
     {
         $.ajax({
-            url: "js/ajax/ajax_etablissement.php",
+            url: "js/ajax/ajax_gerant.php",
             method: "post",
-            data: {donnees: JSON.stringify(etablissement)},
+            data: {donnees: JSON.stringify(gerant)},
             success: function(res) {
 
                 let reponse = JSON.parse(res)
@@ -88,42 +61,64 @@ btnSubmit.addEventListener('click', function(event)
                     nom.style.borderColor = "#bd9e56"
                 }
 
-                if(reponse.ville == 1)
+                if(reponse.prenom == 1)
                 {
                     divError[1].style.visibility = "visible"
-                    ville.style.borderColor = "red"
+                    prenom.style.borderColor = "red"
                 }
                 else
                 {
                     divError[1].style.visibility = "hidden"
-                    ville.style.borderColor = "#bd9e56"
+                    prenom.style.borderColor = "#bd9e56"
                 }
 
-                if(reponse.adresse == 1)
+                if(reponse.email == 1)
                 {
                     divError[2].style.visibility = "visible"
-                    adresse.style.borderColor = "red"
+                    email.style.borderColor = "red"
                 }
                 else
                 {
                     divError[2].style.visibility = "hidden"
-                    adresse.style.borderColor = "#bd9e56"
+                    email.style.borderColor = "#bd9e56"
                 }
 
-                if(reponse.description == 1)
+                if(reponse.ville == 1)
                 {
-                    description.style.borderColor = "red"
-                    divError[3].style.visibility = "visible"
+                    ville.style.borderColor = "red"
                 }
                 else
                 {
-                    description.style.borderColor = "#bd9e56"
-                    divError[3].style.visibility = "hidden"
+                    ville.style.borderColor = "#bd9e56"
                 }
 
-                if(reponse.nom == 0 && reponse.ville == 0 && reponse.adresse == 0 && reponse.description == 0)
+                if(reponse.mdp == 1)
                 {
-                    main.innerHTML = `<h1>Etablissement ajouté !</h1>`
+                    divError[3].style.visibility = "visible"
+                    mdp.style.borderColor = "red"
+                }
+                else
+                {
+                    divError[3].style.visibility = "hidden"
+                    mdp.style.borderColor = "#bd9e56"
+                }
+
+                if(reponse.confPass == 1)
+                {
+                    divError[4].style.visibility = "visible"
+                    confPass.style.borderColor = "red"
+                }
+                else
+                {
+                    divError[4].style.visibility = "hidden"
+                    confPass.style.borderColor = "#bd9e56"
+                }
+
+
+
+                if(reponse.nom == 0 && reponse.prenom == 0 && reponse.email == 0 && reponse.ville == 0 && reponse.mdp == 0 && reponse.confPass == 0)
+                {
+                    main.innerHTML = `<h1>Gerant ajouté !</h1>`
                     function redirection()
                     {
                         window.location.replace("administration.php");
