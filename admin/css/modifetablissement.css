@@ -46,7 +46,6 @@ form > input
     border-radius: 10px;
     height: 30px;
     font-family: "JosefinSans";
-    padding: 0;
 }
 .divError
 {
@@ -59,14 +58,6 @@ form > div
 {
     margin-top: 20px;
     margin-bottom: 10px;
-}
-form > select
-{
-    width: 50%;
-    border: 2px solid #bd9e56;
-    border-radius: 10px;
-    height: 40px;
-    font-family: "JosefinSans";
 }
 form > div > input
 {

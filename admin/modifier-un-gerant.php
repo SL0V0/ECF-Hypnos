@@ -14,7 +14,24 @@ session_start();
 if(empty($_SESSION['token']))
 {
     header('Location: connexion.php');
-}else
+    die();
+
+}else if(empty($_GET['id']))
+{
+    header('Location: administration.php');
+    die();
+}
+
+$requette = $bdd->prepare('SELECT * FROM user WHERE id = ? AND role = "GERANT"');
+$requette->execute(array($_GET['id']));
+$donnees = $requette->fetch();
+
+if(!$donnees)
+{
+    header('Location: administration.php');
+    die();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,30 +40,35 @@ if(empty($_SESSION['token']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/paramAdminHeaderFooter.css">
-    <link rel="stylesheet" href="css/ajoutgerant.css">
-    <title>Ajouter un gérant</title>
+    <link rel="stylesheet" href="css/modifgerant.css">
+    <title>Modifier un gérant</title>
 </head>
 <body>
     <?php include("include/adminHeader.php"); ?>
     <main>
         <form action="administration.php" method="POST">
-            <h1>Ajouter un gérant</h1>
+            <h1>Modifier un gérant</h1>
 
             <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom">
+            <input type="text" id="nom" name="nom" value="<?php echo $donnees['nom']; ?>">
             <div class="divError">Nom incorrect</div>
 
             <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom">
+            <input type="text" name="prenom" id="prenom" value="<?php echo $donnees['prenom'] ?>">
             <div class="divError">Prénom incorrect</div>
 
             <label for="email">E-mail</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" value="<?php echo $donnees['email'] ?>">
             <div class="divError">E-mail incorrect</div>
 
             <label for="Ville">Ville</label>
             <select name="ville" id="ville">
                 <?php
+                   
+                   echo "<option value=''>Choississez une ville</option>";
+
+                   $requette->closeCursor();
+
                     $requette = $bdd->query('SELECT ville FROM etablissements');
                     while($donnees = $requette->fetch())
                     {
@@ -54,7 +76,7 @@ if(empty($_SESSION['token']))
                     }
                 ?>
             </select>
-            <div class="divError">Choisissez une Ville</div>
+            <div class="divError">Choississez une ville</div>
 
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password">
@@ -71,6 +93,6 @@ if(empty($_SESSION['token']))
     </main>
     <?php include("include/adminFooter.php"); ?>
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/gerant.js"></script>
+    <script src="js/modif_gerant.js"></script>
 </body>
 </html>

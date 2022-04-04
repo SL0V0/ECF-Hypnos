@@ -1,5 +1,11 @@
 let btnSubmit = document.getElementById('btnSubmit')
 
+let queryString = window.location.search;
+let urlParams = new URLSearchParams (queryString);
+let id = urlParams.get('id')
+
+id = parseInt(id)
+
 btnSubmit.addEventListener('click', function(event)
 {
     event.preventDefault()
@@ -24,7 +30,8 @@ btnSubmit.addEventListener('click', function(event)
         email: email.value,
         ville: ville.value,
         mdp: mdp.value,
-        confPass: confPass.value
+        confPass: confPass.value,
+        id: id
     }
 
     if(nom.value.length == 0)
@@ -92,11 +99,12 @@ btnSubmit.addEventListener('click', function(event)
         divError[5].style.visibility = "hidden"
         confPass.style.borderColor = "#bd9e56"
     }
+    
 
     if(nom.value.length !== 0 && prenom.value.length !== 0 && email.value.length !== 0 && ville.value.length !== 0 && mdp.value.length !== 0 && confPass.value.length !== 0)
     {
         $.ajax({
-            url: "js/ajax/ajax_gerant.php",
+            url: "js/ajax/ajax_modif_gerant.php",
             method: "post",
             data: {donnees: JSON.stringify(gerant)},
             success: function(res) {
@@ -141,39 +149,45 @@ btnSubmit.addEventListener('click', function(event)
                 if(reponse.ville == 1)
                 {
                     ville.style.borderColor = "red"
+                    divError[3].style.visibility = "visible"
                 }
                 else
                 {
                     ville.style.borderColor = "#bd9e56"
+                    divError[3].style.visibility = "hidden"
                 }
 
                 if(reponse.mdp == 1)
                 {
-                    divError[3].style.visibility = "visible"
+                    divError[4].style.visibility = "visible"
                     mdp.style.borderColor = "red"
                 }
                 else
                 {
-                    divError[3].style.visibility = "hidden"
+                    divError[4].style.visibility = "hidden"
                     mdp.style.borderColor = "#bd9e56"
                 }
 
                 if(reponse.confPass == 1)
                 {
-                    divError[4].style.visibility = "visible"
+                    divError[5].style.visibility = "visible"
                     confPass.style.borderColor = "red"
                 }
                 else
                 {
-                    divError[4].style.visibility = "hidden"
+                    divError[5].style.visibility = "hidden"
                     confPass.style.borderColor = "#bd9e56"
+                }
+                if(reponse.id == 1)
+                {
+                    window.location.replace("administration.php");
                 }
 
 
 
-                if(reponse.nom == 0 && reponse.prenom == 0 && reponse.email == 0 && reponse.ville == 0 && reponse.mdp == 0 && reponse.confPass == 0)
+                if(reponse.nom == 0 && reponse.prenom == 0 && reponse.email == 0 && reponse.ville == 0 && reponse.mdp == 0 && reponse.confPass == 0 && reponse.id == 0)
                 {
-                    main.innerHTML = `<h1>Gerant ajouté !</h1>`
+                    main.innerHTML = `<h1>Gerant modifié !</h1>`
                     function redirection()
                     {
                         window.location.replace("administration.php");

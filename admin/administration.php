@@ -11,11 +11,9 @@ catch(Exception $e)
 
 session_start();
 
-
-
 if(empty($_SESSION['token']))
 {
-    header('Location: connexion.php');
+    header('Location: ../connexion.php');
     die();
 }
 ?>
@@ -25,15 +23,13 @@ if(empty($_SESSION['token']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/paramAdminHeaderFooter.css">
     <link rel="stylesheet" href="css/administration.css">
-    <link rel="stylesheet" href="css/footer.css">
     <title>Aministration</title>
 </head>
 <body>
-    <?php include("include/header.php"); ?>
+    <?php include("include/adminheader.php"); ?>
     <main>
-        <h1>ADMINISTRATION</h1>
         <h2>Etablissements</h2>
         <div class="divParentEtablissement">
             <div class="ajoutEtablissement">
@@ -55,8 +51,8 @@ if(empty($_SESSION['token']))
                     echo "<p class='pType'>Description</p>";
                     echo "<p class='pTypeValeur'>". $donnees['description'] ."</p>";
                     echo "<div class='divModifSuppr'>";
-                    echo "<p class='pModifier'>Modifier</p>";
-                    echo "<p class='pSuppr'>Supprimer</p>";
+                    echo "<p class='pModifier'><a class='aModif' href='modifier-un-etablissement.php?id=" . $donnees['id'] . "'>Modifier</a></p>";
+                    echo "<p class='pSuppr'><a class='aSuppr' href='supprimer-un-etablissement.php?id=" . $donnees['id'] . "'>Supprimer</a></p>";
                     echo "</div>";
                     echo "</div>";
                 }
@@ -86,8 +82,8 @@ if(empty($_SESSION['token']))
                     echo "<p class='pType'>Ville</p>";
                     echo "<p class='pTypeValeur'>". $donnees['ville'] ."</p>";
                     echo "<div class='divModifSuppr'>";
-                    echo "<p class='pModifier'>Modifier</p>";
-                    echo "<p class='pSuppr'>Supprimer</p>";
+                    echo "<p class='pModifier'><a class='aModif' href='modifier-un-gerant.php?id=" . $donnees['id'] . "'>Modifier</a></p>";
+                    echo "<p class='pSuppr'><a class='aSuppr' href='supprimer-un-gerant.php?id=" . $donnees['id'] . "'>Supprimer</a></p>";
                     echo "</div>";
                     echo "</div>";
                 } 
@@ -96,7 +92,6 @@ if(empty($_SESSION['token']))
             ?>
         </div>
     </main>
-    <?php include("include/footer.php"); ?>
-    <script src="js/administration.js"></script>
+    <?php include("include/adminFooter.php"); ?>
 </body>
 </html>

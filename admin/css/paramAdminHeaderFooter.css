@@ -11,7 +11,7 @@ body
     padding: 0;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr 50px;
+    grid-template-rows: 100px 1fr 50px;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
@@ -24,7 +24,13 @@ header
     display: flex;
     align-items: center;
     background-color: #fff;
+    border-top: 3px solid #bd9e56;
+    border-bottom: 3px solid #bd9e56;
     grid-area: 1 / 1 / 2 / 2;
+}
+header > h1
+{
+    padding-left: 20px;
 }
 .imgLogo
 {
@@ -50,6 +56,19 @@ nav
 {
     color: #2c2c2c;
 }
-
-
-
+footer
+{
+    border-top: 3px solid #bd9e56;
+    border-bottom: 3px solid #bd9e56;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    grid-area: 3 / 1 / 4 / 2; 
+}
+.pFooter
+{
+    font-family: 'JosefinSans';
+    margin-left: 10px;
+    font-weight: bolder;
+    color: #bd9e56;
+}
