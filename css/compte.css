@@ -1,0 +1,44 @@
+main
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form > h1
+{
+    font-size: xx-large;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #bd9e56;
+    width: 100%;
+    text-align: center;
+}
+article
+{
+    width: 1200px;
+    background-color: #fff;
+    border: 3px solid #bd9e56;
+    border-radius: 10px;
+    height: 80%;
+}
+form
+{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+}
+form > label
+{
+    width: 50%;
+    margin-bottom: 5px;
+}
+form > input
+{
+    width: 50%;
+    margin-bottom: 20px;
+    border: 2px solid #bd9e56;
+    border-radius: 10px;
+    height: 30px;
+}

@@ -1,19 +1,12 @@
 <?php
 
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=hypnos', 'root', 'root');
-}
-    catch(Exception $e)
-{
-die('Erreur : '.$e->getMessage());
-}
-
 if(!empty($_SESSION['token']))
 {
     $requette = $bdd->prepare('SELECT * FROM user WHERE token = ?');
     $requette->execute(array($_SESSION['token']));
     $donnees = $requette->fetch();
+
+    $requette->closeCursor();
 }else
 {
     $donnees = false;
