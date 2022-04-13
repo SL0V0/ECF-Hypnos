@@ -48,6 +48,7 @@ main > h2
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 200px;
     width: 300px;
     border: 2px solid #bd9e56;
     border-radius: 10px;
@@ -60,6 +61,7 @@ main > h2
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 200px;
     width: 300px;
     border: 2px solid #bd9e56;
     border-radius: 10px;
@@ -107,6 +109,9 @@ main > h2
     padding-bottom: 5px;
     padding-left: 10px;
     padding-top: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow : ellipsis;
 }
 .aModif
 {
@@ -122,4 +127,7 @@ main > h2
 {
     margin: 0;
     padding-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow : ellipsis;
 }
