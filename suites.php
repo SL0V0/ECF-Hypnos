@@ -10,6 +10,26 @@
     }
 
     session_start();
+
+    if(empty($_GET['ville']))
+    {
+        header('Location: index.php');
+        die();
+    }
+
+    $requette = $bdd->prepare('SELECT * FROM etablissements WHERE ville = ?');
+    $requette->execute(array($_GET['ville']));
+    $donnees = $requette->fetch();
+
+    if(!$donnees)
+    {
+        header('Location: index.php');
+        die();
+    }
+
+    $information = $donnees;
+
+    $requette->closeCursor();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,25 +39,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/paramHeaderFooter.css">
     <link rel="stylesheet" href="css/suites.css">
-    <title>Suites de l'établissements de [Ville]</title>
+    <title><?php echo $information['nom']; ?></title>
 </head>
 <body>
     <?php include("include/header.php"); ?>
     <main>
         <article class="articleMain">
             <section class="sectionTitre">
-                <h1 class="Titre">Suites de l'établissement de {Ville}</h1>
+                <h1 class="Titre">Suites de l'établissement de <?php echo $information['ville']; ?></h1>
             </section>
             <section class="sectionListeSuites">
-                <div class="divSuite" href="#">
-                    <div class="divImgSuites"><img class="imgSuites" src="images/hotel.png" alt="image suit"></div>
-                    <div class="infoSuite">
-                        <div class="classNomPrix"><p class="pNom">Le cercle de l'amour</p><p class="pPrix">105€/jour</p></div>
-                        <div class="nbPersonne"><p class="pNbPersonne">2 personnes</p></div>
-                        <div class="descriptionSuite"><p class="pDescriptionSuite">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique eleifend ligula eu rhoncus. Praesent dignissim massa non hendrerit faucibus. Phasellus porttitor tempus massa, eget blandit purus tincidunt vel. Nullam a mi vel enim lobortis tempus pellentesque et nulla. Cras rhoncus mauris eget nulla tincidunt pulvinar. Maecenas faucibus turpis ipsum, et consequat eros ullamcorper in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam erat volutpat. Nullam varius dapibus dignissim. Mauris pharetra, lorem non consectetur rhoncus, ex massa commodo erat, quis mattis ex orci non arcu. In orci mauris, pulvinar porta metus nec, tincidunt sagittis nisi.</p></div>
-                        <div class="btnReserver"><a class="aReserver" href="#">Réserver</a></div>
-                    </div>
-                </div>
+                
+                <?php
+                    $requette = $bdd->prepare('SELECT * FROM suites WHERE ville = ?');
+                    $requette->execute(array($information['ville']));
+                    while($donnees = $requette->fetch())
+                    {
+                        echo "<div class='divSuite' href='#'>";
+                        echo "<div class='divImgSuites'><img class='imgSuites' src='images/suites/" . $donnees['nom_dossier'] . "/0.png' alt='Couverture de la suite'></div>";
+                        echo "<div class='infoSuite'>";
+                        echo "<div class='classNomPrix'><p class='pNom'>" . $donnees['titre'] . "</p><p class='pPrix'>" . $donnees['prix'] . "€/nuit</p></div>";
+                        echo "<div class='nbPersonne'><p class='pNbPersonne'>2 personnes</p></div>";
+                        echo "<div class='descriptionSuite'><p class='pDescriptionSuite'>" . $donnees['description'] . "</p></div>";
+                        echo "<div class='btnReserver'><a class='aReserver' href='reservation.php?id=" . $donnees['id'] . "'>Réserver</a></div>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                ?>
             </section>
         </article>
     </main>
